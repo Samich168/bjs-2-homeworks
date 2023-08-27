@@ -11,10 +11,8 @@ function solveEquation(a, b, c) {
     x1 = -b/(2*a);
     arr.push(x1)
   }
-  console.log(arr)
   return arr;
 }
-solveEquation(1, 2, 10)
 // function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   
 // }
