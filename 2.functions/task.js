@@ -25,7 +25,6 @@ function differenceMaxMinWorker(...arr) {
   }
   return max - min;
 }
-console.log(differenceMaxMinWorker())
 
 function differenceEvenOddWorker(...arr) {
   let sumEvenElement = 0;
