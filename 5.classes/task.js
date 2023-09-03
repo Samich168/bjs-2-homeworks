@@ -92,28 +92,47 @@ class Library{
 
 const library = new Library("Библиотека имени Ленина");
 
-library.addBook(
- new DetectiveBook(
-   "Артур Конан Дойл",
-   "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
-   2019,
-   1008
- )
-);
-library.addBook(
- new FantasticBook(
-   "Аркадий и Борис Стругацкие",
-   "Пикник на обочине",
-   1972,
-   168
- )
-);
-library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
+class Student{
+    constructor(name){
+        this.name = name;
+        this.marks = {};
+    }
+    addMark(mark, subject){
+        if (mark <= 5 && mark >= 2){
+            if(!this.marks[subject]){
+                this.marks[subject] = [];
+            }
+            this.marks[subject].push(mark);
+        }
+    }
 
-console.log(library.findBookBy("name", "Властелин колец")); //null
-console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
+    
+    getAverageBySubject(subject){
+        let counter = 0;
+        for (const mark of this.marks[subject]){
+            counter += mark ;
+        }
+        return (counter / this.marks[subject].length);
+    }
+    getAverage(){
+        let avgCounter = 0;
+        let counter = 0;
+        for(const sub of Object.keys(this.marks)){
+            if (this.marks[sub]){
+                avgCounter += this.getAverageBySubject(sub);
+                counter += 1;
+            }
+        }
+        return avgCounter / counter;
+    }
 
-console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-library.giveBookByName("Машина времени");
-console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
+}
+
+const student = new Student("Олег Никифоров");
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+student.addMark(6, "физика"); // Оценка не добавится, так как больше 5  
+student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
+student.getAverage(); // Средний балл по всем предметам 4.75    
