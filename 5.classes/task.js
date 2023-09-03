@@ -109,10 +109,13 @@ class Student{
     
     getAverageBySubject(subject){
         let counter = 0;
-        for (const mark of this.marks[subject]){
-            counter += mark ;
+        if(this.marks[subject]){
+            for (const mark of this.marks[subject]){
+                counter += mark ;
+            }
+            return (counter / this.marks[subject].length);
         }
-        return (counter / this.marks[subject].length);
+        return 0;
     }
     getAverage(){
         let avgCounter = 0;
@@ -129,10 +132,4 @@ class Student{
 }
 
 const student = new Student("Олег Никифоров");
-student.addMark(5, "химия");
-student.addMark(5, "химия");
-student.addMark(5, "физика");
-student.addMark(4, "физика");
-student.addMark(6, "физика"); // Оценка не добавится, так как больше 5  
 student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
-student.getAverage(); // Средний балл по всем предметам 4.75    
