@@ -4,9 +4,10 @@
         if (isNaN(result)){
             throw new Error("Невалидное значение");
         } 
+        return result;
     }
     catch (error){
-        console.log(error);
+        throw (error);
     }
 }
 function validateCount(count){
