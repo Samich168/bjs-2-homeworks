@@ -8,9 +8,6 @@
     catch (error){
         console.log(error);
     }
-    finally{
-        return result
-    }
 }
 function validateCount(count){
     try{
@@ -20,6 +17,8 @@ function validateCount(count){
         return error;
     }
 }
+
+
 
 class Triangle{
     constructor(a, b, c){
