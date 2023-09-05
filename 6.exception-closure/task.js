@@ -29,8 +29,8 @@ class Triangle{
 
 
         this.a = a;
-        this.a = b;
-        this.a = c;
+        this.b = b;
+        this.c = c;
     }
     get perimeter(){
         return this.a + this.b + this.c;
