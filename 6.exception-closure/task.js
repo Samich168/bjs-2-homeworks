@@ -36,18 +36,13 @@ class Triangle{
         return this.a + this.b + this.c;
     }
     get area(){
-        halfmeter = 0.5 * (this.perimeter);
-        area = Math.sqrt(this.halfmeter * (this.halfmeter - this.a)*(this.halfmeter - this.b)*(this.halfmeter - this.c))
+        let halfmeter = 0.5 * this.perimeter;
+        let area = Math.sqrt(this.halfmeter * (this.halfmeter - this.a)*(this.halfmeter - this.b)*(this.halfmeter - this.c))
         console.log(area)
         return parseFloat(area.toFixed(3))
     }  
     
 }
-
-const triangle = new Triangle(2,5,5);
-triangle
-triangle.perimeter
-triangle.area
 
 function getTriangle(a, b, c) {
   try {
