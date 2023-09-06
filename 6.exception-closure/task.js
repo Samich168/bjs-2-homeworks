@@ -37,7 +37,7 @@ class Triangle{
     }
     get area(){
         let halfmeter = 0.5 * this.perimeter;
-        let area = Math.sqrt(this.halfmeter * (this.halfmeter - this.a)*(this.halfmeter - this.b)*(this.halfmeter - this.c))
+        let area = Math.sqrt(halfmeter * (halfmeter - this.a)*(halfmeter - this.b)*(halfmeter - this.c))
         console.log(area)
         return parseFloat(area.toFixed(3))
     }  
