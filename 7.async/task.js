@@ -17,8 +17,8 @@ class AlarmClock {
     }
     getCurrentFormattedTime(){
         const now = new Date()
-        const currentHour = String(now.getHours().padStart(2, "0"));
-        const currentMinute = String(now.getMinutes().padStart(2, "0"));
+        const currentHour = String(now.getHours()).padStart(2, "0");
+        const currentMinute = String(now.getMinutes()).padStart(2, "0");
 
         return (`${currentHour}:${currentMinute}`)
     }
