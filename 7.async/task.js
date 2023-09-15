@@ -16,11 +16,11 @@ class AlarmClock {
         this.alarmCollection = this.alarmCollection.filter(t => t.time != time);
     }
     getCurrentFormattedTime(){
-        const now = Date()
-        const currentHour = now.getHours().padStart(2, "0");
-        const currentMinute = now.getMinutes().padStart(2, "0");
+        const now = new Date()
+        const currentHour = String(now.getHours().padStart(2, "0"));
+        const currentMinute = String(now.getMinutes().padStart(2, "0"));
 
-        return (`Текущее время: ${currentHour}:${currentMinute}`)
+        return (`${currentHour}:${currentMinute}`)
     }
     start(){
         if(!this.intervalId){
