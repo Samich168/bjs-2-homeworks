@@ -10,11 +10,13 @@ function getArrayParams(...arr) {
 }
 
 function summElementsWorker(...elements){
-    let result = elements.reduce((sum, current) => sum + current, 0);
+    let result = 0; 
+    result = elements.reduce((sum, current) => sum + current, 0);
     return result;
 }
 function differenceMaxMinWorker(...elements){
-    let result = Math.max(...elements) - Math.min(...elements);
+    let result = 0; 
+    result = Math.max(...elements) - Math.min(...elements);
     return result;
 }
 function differenceEvenOddWorker(...elements){
