@@ -13,10 +13,15 @@ function solveEquation(a, b, c){
     return x1, x2;
   }
 }
-console.log(solveEquation(1, 2, 1))
-
-
-
+// console.log(solveEquation(1, 2, 1))
+function calculateTotalMortgage(percent, contribution, amount, countMonths){
+  percent = percent / 100 / 12;
+  let body = amount - contribution;
+  let monthPay = body * (percent + (percent / (((1 + percent) ** countMonths) - 1)));
+  let result = monthPay * countMonths;
+  return result.toFixed(2);
+}
+console.log(calculateTotalMortgage(15, 0, 10000, 36));
 
 
 
