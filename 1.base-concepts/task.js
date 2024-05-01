@@ -5,15 +5,15 @@ function solveEquation(a, b, c){
     return [];
   }
   if (disk === 0){
-    return( -b / (2*a));
+    return [-b / (2*a)];
   }
   else{
     let x1 = (-b + disk ** 0.5) / (2*a);
     let x2 = (-b - disk ** 0.5) / (2*a);
-    return x1, x2;
+    return [x1, x2];
   }
 }
-// console.log(solveEquation(1, 2, 1))
+console.log(solveEquation(1, 2, 1))
 function calculateTotalMortgage(percent, contribution, amount, countMonths){
   percent = percent / 100 / 12;
   let body = amount - contribution;
@@ -21,7 +21,7 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths){
   let result = monthPay * countMonths;
   return result.toFixed(2);
 }
-console.log(calculateTotalMortgage(15, 0, 10000, 36));
+// console.log(calculateTotalMortgage(15, 0, 10000, 36));
 
 
 
