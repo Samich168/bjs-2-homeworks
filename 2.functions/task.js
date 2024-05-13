@@ -5,7 +5,7 @@ let getArrayParams = function(...arr){
     return i += j;
   });
   let avg = sum / [...arr].length;
-  return(`max: ${max}, min: ${min}, avg: ${+avg.toFixed(2)}`);
+  return(`{max: ${max}, min: ${min}, avg: ${+avg.toFixed(2)}}`);
   }
 
 let summElementsWorker = function(...elements){
