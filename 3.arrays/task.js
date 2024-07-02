@@ -1,5 +1,5 @@
 function compareArrays(arr1, arr2) {
-  return (arr2.every((number, index) => number === arr1[index]));
+  return arr1 === arr2 && (arr2.every((number, index) => number === arr1[index]));
 }
 
 console.log(compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5]))
