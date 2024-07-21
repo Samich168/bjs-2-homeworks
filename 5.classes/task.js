@@ -92,7 +92,7 @@ class Library{
 class Student{
     constructor(name){
         this.name = name;
-        this.marks = [];
+        this.marks = {};
     }
     addMark(mark, subject){
         if (mark >= 2 && mark <= 5){
@@ -124,7 +124,6 @@ student.addMark(5, "химия");
 student.addMark(5, "физика");
 student.addMark(4, "физика");
 student.addMark(6, "физика"); // Оценка не добавится, так как больше 5
-console.log(student.marks)
 console.log(student.getAverageBySubject("физика")); // Средний балл по предмету физика 4.5
 console.log(student.getAverageBySubject("биология")); // Вернёт 0, так как по такому предмету нет никаких оценок.
 console.log(student.getAverage()); // Средний балл по всем предметам 4.75
