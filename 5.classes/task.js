@@ -1,5 +1,6 @@
-class PrintEditionItem{
+"use strict";
 
+class PrintEditionItem{
     constructor(name, releaseDate, pagesCount){
         this.name = name;
         this.releaseDate = releaseDate;
@@ -7,21 +8,22 @@ class PrintEditionItem{
         this.state = 100;
         this.type = null;
     }
-
     fix(){
-        this.state = this.state * 1.5;
+        this.state *= 1.5;
     }
-    set state(newState) {
-    if (newState < 0) {
-      this._state = 0;
-    } else if (newState > 100) {
-      this._state = 100;
-    } else {
-      this._state = newState;
+    set state(newState){
+        if (newState >= 100){
+            this._state = 100;
+        } 
+        else if (newState <= 0){
+            this._state = 0;
+        }
+        else{
+            this._state = newState;
+        }
     }
-  }
     get state(){
-        return this._state
+        return this._state;
     }
 }
 
@@ -35,101 +37,94 @@ class Magazine extends PrintEditionItem {
 class Book extends PrintEditionItem{
     constructor(author, name, releaseDate, pagesCount){
         super(name, releaseDate, pagesCount);
-        this.type = "book"
         this.author = author;
+        this.type = "book";
     }
 }
 
 class NovelBook extends Book{
     constructor(author, name, releaseDate, pagesCount){
         super(author, name, releaseDate, pagesCount);
-        this.type = 'novel'
+        this.type = "novel";
     }
 }
-
-class DetectiveBook extends Book{
-    constructor(author, name, releaseDate, pagesCount){
-        super(author, name, releaseDate, pagesCount);
-        this.type = 'detective'
-    }
-}
-
 class FantasticBook extends Book{
     constructor(author, name, releaseDate, pagesCount){
         super(author, name, releaseDate, pagesCount);
-        this.type = 'fantastic'
+        this.type = "fantastic";
+    }
+}
+class DetectiveBook extends Book{
+    constructor(author, name, releaseDate, pagesCount){
+        super(author, name, releaseDate, pagesCount);
+        this.type = "detective";
     }
 }
 
 class Library{
     constructor(name){
-        this.name = name; 
+        this.name = name;
         this.books = [];
     }
     addBook(book){
-        if(book instanceof PrintEditionItem && book.state > 30){
+        if (book.state > 30){
             this.books.push(book);
         }
     }
     findBookBy(type, value){
-        for(const book of this.books){
-            if(book[type] === value){
+        for (let book of this.books){
+            if (book[type] === value){
                 return book;
             }
         }
         return null;
     }
     giveBookByName(bookName){
-        const book = this.books.find(book => book.name === bookName)
-        if (book) {
-            this.books = this.books.filter(item => item !== book); // Удалить найденную книгу из массива
-            return book;
-        } else {
-            return null;
+        for (let i = 0; i < this.books.length; i++){
+            if(this.books[i].name === bookName){
+                return this.books.splice(i, 1)[0];
+            }
         }
+        return null;
     }
 }
-
-const library = new Library("Библиотека имени Ленина");
 
 class Student{
     constructor(name){
         this.name = name;
-        this.marks = {};
+        this.marks = [];
     }
     addMark(mark, subject){
-        if (mark <= 5 && mark >= 2){
-            if(!this.marks[subject]){
+        if (mark >= 2 && mark <= 5){
+            if (!this.marks[subject]){
                 this.marks[subject] = [];
             }
             this.marks[subject].push(mark);
         }
+        return 0;        
     }
-
-    
     getAverageBySubject(subject){
-        let counter = 0;
-        if(this.marks[subject]){
-            for (const mark of this.marks[subject]){
-                counter += mark ;
-            }
-            return (counter / this.marks[subject].length);
+        if (!this.marks[subject] || this.marks[subject].length === 0){
+            return 0;
+        } else {
+            let markSum = this.marks[subject].reduce((acc, mark) => acc + mark, 0);
+            return markSum / this.marks[subject].length;
         }
-        return 0;
     }
     getAverage(){
-        let avgCounter = 0;
-        let counter = 0;
-        for(const sub of Object.keys(this.marks)){
-            if (this.marks[sub]){
-                avgCounter += this.getAverageBySubject(sub);
-                counter += 1;
-            }
-        }
-        return avgCounter / counter;
+        let allSubjects = Object.keys(this.marks)
+        let allMarks = allSubjects.reduce((acc, subject) => acc += this.getAverageBySubject(subject), 0);
+        return allMarks / allSubjects.length
     }
-
 }
 
 const student = new Student("Олег Никифоров");
-student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+student.addMark(6, "физика"); // Оценка не добавится, так как больше 5
+console.log(student.marks)
+console.log(student.getAverageBySubject("физика")); // Средний балл по предмету физика 4.5
+console.log(student.getAverageBySubject("биология")); // Вернёт 0, так как по такому предмету нет никаких оценок.
+console.log(student.getAverage()); // Средний балл по всем предметам 4.75
